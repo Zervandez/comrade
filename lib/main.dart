@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:mysql1/mysql1.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+
+  // Open a connection (testdb should already exist)
+  final connection = await MySqlConnection.connect(ConnectionSettings(
+    host: 'remotemysql.com',
+    port: 3306,
+    user: 'hCH4aiPp8x',
+    password: 'KVnMFqzSfi',
+    db: 'User',
+  ));
+  var results = await connection.query('select * from User');
+  for (var row in results) {
+    print('${row[0]}');
+  }
+
+  // Finally, close the connection
+  //await connection.close();
 }
 
 class MyApp extends StatelessWidget {

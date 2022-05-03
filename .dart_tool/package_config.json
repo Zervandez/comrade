@@ -38,6 +38,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "crypto",
+      "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4",
       "packageUri": "lib/",
@@ -74,6 +80,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "logging",
+      "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/logging-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.11",
       "packageUri": "lib/",
@@ -92,8 +104,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "mysql1",
+      "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/mysql1-0.19.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "pool",
+      "rootUri": "file:///usr/local/Caskroom/flutter/2.2.0/flutter/.pub-cache/hosted/pub.dartlang.org/pool-1.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -158,7 +182,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-30T15:35:05.863453Z",
+  "generated": "2022-05-03T13:14:47.468641Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
