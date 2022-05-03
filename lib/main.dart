@@ -5,20 +5,20 @@ Future<void> main() async {
   runApp(const MyApp());
 
   // Open a connection (testdb should already exist)
-  final connection = await MySqlConnection.connect(ConnectionSettings(
-    host: 'remotemysql.com',
-    port: 3306,
-    user: 'hCH4aiPp8x',
-    password: 'KVnMFqzSfi',
-    db: 'User',
-  ));
-  var results = await connection.query('select * from User');
-  for (var row in results) {
-    print('${row[0]}');
-  }
-
-  // Finally, close the connection
-  //await connection.close();
+  MySqlConnection.connect(ConnectionSettings(
+          host: 'remotemysql.com',
+          port: 3306,
+          user: 'hCH4aiPp8x',
+          password: 'KVnMFqzSfi',
+          db: 'User'))
+      .then((conn) {
+    conn.query('select * from user').then((results) {
+      List.from(results).forEach((row) {
+        print('UserName: ${row[0]}, Password: ${row[1]}');
+      });
+      conn.close(); // closing database connection here
+    });
+  });
 }
 
 class MyApp extends StatelessWidget {
