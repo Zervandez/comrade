@@ -6,18 +6,20 @@ Future<void> main() async {
 
   // Open a connection (testdb should already exist)
   MySqlConnection.connect(ConnectionSettings(
-          host: 'remotemysql.com',
+          host: 'localhost',
           port: 3306,
-          user: 'hCH4aiPp8x',
-          password: 'KVnMFqzSfi',
-          db: 'User'))
+          user: 'root',
+          password: 'Haffenstadt!',
+          db: 'dbco'))
       .then((conn) {
-    conn.query('select * from user').then((results) {
+    conn.query('select * from User').then((results) {
       List.from(results).forEach((row) {
-        print('UserName: ${row[0]}, Password: ${row[1]}');
+        print('UserName: ${row[0]}');
+        print('object');
       });
-      conn.close(); // closing database connection here
+      // closing database connection here
     });
+    conn.close();
   });
 }
 
