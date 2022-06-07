@@ -1,4 +1,3 @@
-.dart_tool/
 windows/
 ios/
 build/
@@ -7,4 +6,4 @@ test/
 .DS_Store
 comrade.iml
 analysis_options.yaml
-
+.dart_tool/
