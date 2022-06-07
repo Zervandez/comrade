@@ -5,3 +5,5 @@ build/
 android/
 .dart_tool/flutter_build/
 .DS_Store
+comrade.iml
+
