@@ -13,5 +13,6 @@ analysis_options.yaml
 .dart_tool/build
 .dart_tool/ios
 .dart_tool/windows
+.dart_tool/flutter_build
 .idea/
 web/
