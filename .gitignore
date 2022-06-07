@@ -13,3 +13,5 @@ analysis_options.yaml
 .dart_tool/build
 .dart_tool/ios
 .dart_tool/windows
+.idea/
+web/
