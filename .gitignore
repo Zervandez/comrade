@@ -6,4 +6,10 @@ test/
 .DS_Store
 comrade.iml
 analysis_options.yaml
-.dart_tool/
+.packages
+.dart_tool/package_config.json
+.dart_tool/version
+.dart_tool/android
+.dart_tool/build
+.dart_tool/ios
+.dart_tool/windows
