@@ -6,4 +6,5 @@ android/
 test/
 .DS_Store
 comrade.iml
+analysis_options.yaml
 
