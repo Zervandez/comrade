@@ -1,3 +1,3 @@
 # comrade
 
-A new social network.
+A real social network.
