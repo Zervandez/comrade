@@ -6,7 +6,8 @@ test/
 .DS_Store
 comrade.iml
 analysis_options.yaml
-.packages
+*.packages
+*.metadata
 .dart_tool/package_config.json
 .dart_tool/version
 .dart_tool/android
@@ -17,3 +18,8 @@ analysis_options.yaml
 .dart_tool/
 .idea/
 web/
+
+.dart_tool/version
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
+.packages
