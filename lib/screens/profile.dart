@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(UserProfile());
+void main() => runApp(const UserProfile());
 // The main() class is here for debbuging purposes
 
 class UserProfile extends StatelessWidget {
@@ -38,7 +38,7 @@ class UserProfile extends StatelessWidget {
             // kur te lidhim backendin do bahen bashke kta
             Container(
               height: 40,
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -61,7 +61,7 @@ class UserProfile extends StatelessWidget {
 
             Container(
               height: 240,
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border.all(
                 color: Colors.black,
@@ -87,8 +87,8 @@ class UserProfile extends StatelessWidget {
 }
 
 Widget hobbyItem() => Container(
-      margin: EdgeInsets.all(4),
-      padding: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white70,
@@ -96,20 +96,20 @@ Widget hobbyItem() => Container(
             color: Colors.deepPurple,
             width: 2,
           )),
-      child: Text("Yogamano"),
+      child: const Text("Yogamano"),
     );
 
 Widget singleChartColumn() => Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          margin: EdgeInsets.all(8),
+          margin: const EdgeInsets.all(8),
           width: 30,
           height: 120,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.amber,
           ),
         ),
-        Text('M'),
+        const Text('M'),
       ],
     );
