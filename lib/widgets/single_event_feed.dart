@@ -12,6 +12,7 @@ class SingleEvent extends StatelessWidget {
         Row(
           children: [
             Container(
+                margin: const EdgeInsets.all(4),
                 height: 50,
                 width: 50,
                 child: Image.asset(
