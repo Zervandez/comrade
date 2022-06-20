@@ -87,7 +87,30 @@ class UserProfile extends StatelessWidget {
                   ],
                 ),
               ),
-
+              //horizontal hobbies list
+              // kur te lidhim backendin do bahen bashke kta
+              Container(
+                height: 40,
+                margin: const EdgeInsets.all(8),
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem(),
+                    hobbyItem()
+                  ],
+                ),
+              ),
               Container(
                 alignment: Alignment.bottomCenter,
                 height: 240,
