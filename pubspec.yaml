@@ -40,6 +40,7 @@ dependencies:
   encrypt: ^3.2.0
   random_string: ^2.3.1
   provider: ^6.0.3
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -93,3 +94,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+  assets:
+    - assets/sabba_profile_pic.jpg

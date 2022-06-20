@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                   if (snapshot.hasData && snapshot.data != null) {
                     //return Text(snapshot.data);
                   }
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 })),
       ),
     );
