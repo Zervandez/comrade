@@ -24,8 +24,8 @@ class UserProfile extends StatelessWidget {
           actions: [
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.all(12),
-              child: Text(
+              margin: const EdgeInsets.all(12),
+              child: const Text(
                 "M60",
                 style: TextStyle(
                   fontSize: 22,
@@ -164,6 +164,6 @@ Widget singleChartColumn() => Column(
             color: Colors.amber,
           ),
         ),
-        Text('Mi'),
+        const Text('Mi'),
       ],
     );

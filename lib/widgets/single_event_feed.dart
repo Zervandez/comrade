@@ -12,13 +12,17 @@ class SingleEvent extends StatelessWidget {
         Row(
           children: [
             Container(
-                margin: const EdgeInsets.all(4),
-                height: 50,
-                width: 50,
-                child: Image.asset(
-                  '../../assets/sabba_profile_pic.jpg',
+              margin: const EdgeInsets.all(4),
+              height: 50,
+              width: 50,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/sabba_profile_pic.jpg'),
                   fit: BoxFit.cover,
-                )),
+                ),
+                shape: BoxShape.circle,
+              ),
+            ),
             Column(
               children: const [
                 Text("TITLE"),
