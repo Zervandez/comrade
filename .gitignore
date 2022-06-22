@@ -24,3 +24,5 @@ web/
 .dart_tool/package_config_subset
 .packages
 lib/.DS_Store
+.flutter-plugins
+.flutter-plugins-dependencies
