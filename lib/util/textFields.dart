@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:validation_textformfield/validation_textformfield.dart';
 import 'package:passwordfield/passwordfield.dart';
+import 'package:validation_textformfield/validation_textformfield.dart';
 
 class NormalTextField extends StatelessWidget {
   final String inputText;
