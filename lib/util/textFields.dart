@@ -5,11 +5,9 @@ import 'package:passwordfield/passwordfield.dart';
 
 class NormalTextField extends StatelessWidget {
   final String inputText;
-  final bool password;
 
   NormalTextField(
     @required this.inputText,
-    @required this.password,
   );
 
   @override
