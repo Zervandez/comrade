@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.all(10),
-              child: NormalTextField("hallochen", true),
+              child: NormalTextField("hallochen"),
             ),
             Container(
               padding: EdgeInsets.all(10),
