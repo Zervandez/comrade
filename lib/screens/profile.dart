@@ -55,7 +55,7 @@ class UserProfile extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 alignment: Alignment.center,
                 child: const Text(
-                  "@makaronenFresser999",
+                  "@besterProf",
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w100,
