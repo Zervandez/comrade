@@ -41,6 +41,11 @@ dependencies:
   random_string: ^2.3.1
   provider: ^6.0.3
   intl: ^0.17.0
+  dart_date: ^1.1.1
+  country_icons: ^2.0.2
+  intl_phone_field: ^3.1.0
+  validation_textformfield: ^2.2.5
+  passwordfield: ^0.1.0
 
 dev_dependencies:
   flutter_test:
