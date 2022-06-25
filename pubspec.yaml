@@ -46,6 +46,7 @@ dependencies:
   intl_phone_field: ^3.1.0
   validation_textformfield: ^2.2.5
   passwordfield: ^0.1.0
+  datetime_picker_formfield: ^2.0.0
 
 dev_dependencies:
   flutter_test:
