@@ -1,7 +1,6 @@
 windows/
 ios/
 build/
-android/
 test/
 .DS_Store
 comrade.iml
