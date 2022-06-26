@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late TextEditingController emailController;
+  //late TextEditingController emailController;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const [
-            TextField(controller: emailController),
+            TextField(controller: null),
           ],
         ),
       ),
