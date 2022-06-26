@@ -29,6 +29,11 @@ class LoginPage extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: const PasswordFieldClass(),
             ),
+            Container(
+              padding: EdgeInsets.all(10),
+              child:
+                  const CommradeTextField(hintText: "hintText", password: true),
+            ),
           ],
         ),
       ),

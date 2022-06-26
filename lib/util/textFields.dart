@@ -3,6 +3,34 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:passwordfield/passwordfield.dart';
 import 'package:validation_textformfield/validation_textformfield.dart';
 
+class CommradeTextField extends StatefulWidget {
+  const CommradeTextField(
+      {Key? key, required this.hintText, required this.password})
+      : super(key: key);
+  final String hintText;
+  final bool password;
+
+  @override
+  State<CommradeTextField> createState() => _CommradeTextFieldState();
+}
+
+class _CommradeTextFieldState extends State<CommradeTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        hintText: widget.hintText,
+      ),
+      obscureText: widget.password,
+    );
+  }
+}
+
+//#######################
+
 class NormalTextField extends StatelessWidget {
   final String inputText;
 
