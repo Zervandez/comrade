@@ -1,39 +1,54 @@
+import 'package:comrade/screens/login/login.dart';
+import 'package:comrade/screens/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'firebase_options.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  final Auth _auth = Auth();
+  final bool isLogged = await _auth.isLogged();
+  final MyApp myApp = MyApp(
+    initialRoute: isLogged ? '/profile' : '/login',
+  );
+  runApp(myApp);
+}
+
+class Auth {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  Future<bool> isLogged() async {
+    try {
+      final User? user = _firebaseAuth.currentUser;
+      return user != null;
+    } catch (e) {
+      return false;
+    }
+  }
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  final String initialRoute;
 
-  // In here, we check if the user is logged in and redirect accordingly
+  MyApp({required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: CircularProgressIndicator(),
       debugShowCheckedModeBanner: false,
-      title: 'Comrade',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: Center(child: FutureBuilder<String>(builder: (context, snapshot) {
-          print(snapshot.data);
-          if (snapshot.hasData && snapshot.data != null) {
-            //return Text(snapshot.data);
-          }
-          return const CircularProgressIndicator();
-        })),
-      ),
+      title: 'Dynamic Route Demo',
+      initialRoute: initialRoute,
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/profile': (context) => UserProfile(),
+        //'/settings': (context) => SettingsPage(),
+      },
     );
   }
 }
