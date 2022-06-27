@@ -12,13 +12,26 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    print('loginPage');
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          Container(
+            margin: EdgeInsets.only(top: 100),
+            // margin: const EdgeInsets.all(10),
+            height: 100.0,
+            width: 100.0,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/comrade_logo.jpeg'),
+                fit: BoxFit.cover,
+              ),
+              //shape: BoxShape.circle,
+            ),
+          ),
           Container(
             margin: EdgeInsets.all(10),
             child: const Text(

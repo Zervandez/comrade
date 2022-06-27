@@ -98,3 +98,4 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/sabba_profile_pic.jpg
+    - assets/comrade_logo.jpeg
