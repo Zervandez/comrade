@@ -14,6 +14,15 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    emailController.addListener(() => setState(() {}));
+    passwordController.addListener(() => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -51,6 +60,12 @@ class _LoginPageState extends State<LoginPage> {
                   textInputAction: TextInputAction.go,
                   controller: emailController,
                   decoration: InputDecoration(
+                    suffixIcon: emailController.text.isEmpty
+                        ? Container(width: 0)
+                        : IconButton(
+                            onPressed: () => emailController.clear(),
+                            icon: Icon(Icons.close),
+                          ),
                     labelText: 'Enter your E-Mail',
                     hintText: "maxmusterman@web.de",
                     contentPadding: const EdgeInsets.symmetric(
@@ -81,6 +96,12 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       labelText: 'Enter your Password',
                       //hintText: "",
+                      suffixIcon: emailController.text.isEmpty
+                          ? Container(width: 0)
+                          : IconButton(
+                              onPressed: () => emailController.clear(),
+                              icon: Icon(Icons.close),
+                            ),
 
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),

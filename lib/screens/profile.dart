@@ -55,7 +55,7 @@ class UserProfile extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
               child: const Text(
-                "@makaronenFresser999",
+                "@kk",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w100,
@@ -91,9 +91,7 @@ class UserProfile extends StatelessWidget {
             // kur te lidhim backendin do bahen bashke kta
             Container(
               child: const ElevatedButton(
-                child: Text('LOGOUT'),
-                onPressed: logUserOut,
-              ),
+                  child: Text('LOGOUT'), onPressed: logUserOut),
             ),
             Container(
               alignment: Alignment.bottomCenter,
