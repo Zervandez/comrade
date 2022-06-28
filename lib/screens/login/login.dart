@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 100),
+            margin: EdgeInsets.only(top: 50),
             // margin: const EdgeInsets.all(10),
             height: 100.0,
             width: 100.0,
@@ -96,10 +96,10 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                       labelText: 'Enter your Password',
                       //hintText: "",
-                      suffixIcon: emailController.text.isEmpty
+                      suffixIcon: passwordController.text.isEmpty
                           ? Container(width: 0)
                           : IconButton(
-                              onPressed: () => emailController.clear(),
+                              onPressed: () => passwordController.clear(),
                               icon: Icon(Icons.close),
                             ),
 

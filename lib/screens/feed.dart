@@ -9,20 +9,18 @@ class Feed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Frankfurt'),
-          actions: [],
-        ),
-        body: Column(
-          children: const [
-            SingleEvent(),
-            SingleEvent(),
-            SingleEvent(),
-            SingleEvent(),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Frankfurt'),
+        actions: [],
+      ),
+      body: Column(
+        children: const [
+          SingleEvent(),
+          SingleEvent(),
+          SingleEvent(),
+          SingleEvent(),
+        ],
       ),
     );
   }

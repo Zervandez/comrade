@@ -1,3 +1,4 @@
+import 'package:comrade/homepage.dart';
 import 'package:comrade/screens/login/login.dart';
 import 'package:comrade/screens/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,7 +15,7 @@ void main() async {
   final Auth _auth = Auth();
   final bool isLogged = await _auth.isLogged();
   final MyApp myApp = MyApp(
-    initialRoute: isLogged ? '/profile' : '/login',
+    initialRoute: isLogged ? '/homepage' : '/login',
   );
   runApp(myApp);
 }
@@ -42,11 +43,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: CircularProgressIndicator(),
       debugShowCheckedModeBanner: false,
-      title: 'Dynamic Route Demo',
       initialRoute: initialRoute,
       routes: {
         '/login': (context) => LoginPage(),
-        '/profile': (context) => UserProfile(),
+        '/homepage': (context) => HomePage(),
       },
     );
   }

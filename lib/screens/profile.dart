@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-//void main() => runApp(const UserProfile());
+void main() => runApp(UserProfile());
 // The main() class is here for debbuging purposes
 
 class UserProfile extends StatelessWidget {
@@ -41,8 +41,8 @@ class UserProfile extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.all(10),
-              height: 180.0,
-              width: 180.0,
+              height: 140.0,
+              width: 140.0,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/sabba_profile_pic.jpg'),
@@ -60,6 +60,23 @@ class UserProfile extends StatelessWidget {
                   fontSize: 30,
                   fontWeight: FontWeight.w100,
                 ),
+              ),
+            ),
+
+            Container(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.male),
+                  Text('27'),
+                  Icon(Icons.settings),
+                  ElevatedButton.icon(
+                    onPressed: logUserOut,
+                    icon: Icon(Icons.logout),
+                    label: Text(''),
+                  )
+                ],
               ),
             ),
 
@@ -131,7 +148,7 @@ Widget hobbyItem() => Container(
             color: Colors.deepPurple,
             width: 2,
           )),
-      child: const Text("Italianer sein"),
+      child: const Text("Yoga"),
     );
 
 Widget singleChartColumn() => Column(
