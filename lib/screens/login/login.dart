@@ -1,3 +1,4 @@
+import 'package:comrade/homepage.dart';
 import 'package:comrade/screens/feed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Feed()),
+                                builder: (context) => const HomePage()),
                           )
                         }),
               ),

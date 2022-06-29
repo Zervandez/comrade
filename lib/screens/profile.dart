@@ -1,3 +1,4 @@
+import 'package:comrade/screens/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,31 +12,31 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.flag_sharp),
-        title: const Text(
-          "Frankfurt",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(12),
-            child: const Text(
-              "M60",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Container(
+    return SafeArea(
+      // appBar: AppBar(
+      //   leading: const Icon(Icons.flag_sharp),
+      //   title: const Text(
+      //     "Frankfurt",
+      //     style: TextStyle(
+      //       fontSize: 22,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   actions: [
+      //     Container(
+      //       alignment: Alignment.center,
+      //       margin: const EdgeInsets.all(12),
+      //       child: const Text(
+      //         "M60",
+      //         style: TextStyle(
+      //           fontSize: 22,
+      //           fontWeight: FontWeight.bold,
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      child: Container(
         // height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
@@ -107,8 +108,17 @@ class UserProfile extends StatelessWidget {
             //horizontal hobbies list
             // kur te lidhim backendin do bahen bashke kta
             Container(
-              child: const ElevatedButton(
-                  child: Text('LOGOUT'), onPressed: logUserOut),
+              child: ElevatedButton(
+                  onPressed: () {
+                    FirebaseAuth auth = FirebaseAuth.instance;
+                    auth.signOut().then((res) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    });
+                  },
+                  child: Text('LOGOUT')),
             ),
             Container(
               alignment: Alignment.bottomCenter,

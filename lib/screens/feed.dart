@@ -12,7 +12,6 @@ class Feed extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Frankfurt'),
-        actions: [],
       ),
       body: Column(
         children: const [
