@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import '../models/event.dart';
 
 class AddEvent extends StatefulWidget {
   const AddEvent({Key? key}) : super(key: key);
@@ -8,12 +13,27 @@ class AddEvent extends StatefulWidget {
 }
 
 class _AddEventState extends State<AddEvent> {
+  DatabaseReference eventsReference = FirebaseDatabase.instance.ref('events');
+
   TextEditingController titleController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
   DateTime selectedDate = DateTime.now();
+  String selectedValue = 'F';
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("F"), value: "F"),
+      DropdownMenuItem(child: Text("OF"), value: "OF"),
+      DropdownMenuItem(child: Text("MZ"), value: "MZ"),
+      DropdownMenuItem(child: Text("WI"), value: "WI"),
+      DropdownMenuItem(child: Text("DA"), value: "DA"),
+      DropdownMenuItem(child: Text("HG"), value: "HG"),
+    ];
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +49,6 @@ class _AddEventState extends State<AddEvent> {
               textInputType: TextInputType.multiline,
               maxLines: 3,
             ),
-            customTextfield(cityController, 'Enter city'),
-            customTextfield(addressController, 'Enter event address'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -40,15 +58,56 @@ class _AddEventState extends State<AddEvent> {
                 ),
                 Text("${selectedTime.hour}:${selectedTime.minute}"),
                 ElevatedButton(
-                  onPressed: () async {},
+                  onPressed: () => _selectDate(context),
                   child: Text('date?'),
                 ),
                 Text(
                     '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}'),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: DropdownButton(
+                      value: selectedValue,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedValue = newValue!;
+                        });
+                      },
+                      items: dropdownItems),
+                ),
+                Flexible(
+                  child:
+                      customTextfield(addressController, 'Enter event address'),
+                )
+              ],
+            ),
             ElevatedButton(
-              onPressed: null,
+              onPressed: () {
+                // events.push
+                Event newEvent = Event(
+                  titleController.text,
+                  descriptionController.text,
+                  selectedTime,
+                  selectedDate,
+                  selectedValue,
+                  addressController.text,
+                );
+
+                // get user id & push it t00
+                // dynamic array with participants
+                // or document in Firestore for participants
+
+                FirebaseFirestore.instance
+                    .collection('Events')
+                    .add(newEvent.toJson())
+                    .then((value) => print('success!'));
+                // .then go to feed
+                // & optionally hightlight the last added post for 1 sec
+              },
               child: Text('POST EVENT'),
             )
           ],
@@ -101,17 +160,15 @@ class _AddEventState extends State<AddEvent> {
   }
 
   void _selectDate(BuildContext context) {
-    DateTime? newSelectedDate = showDatePicker(
+    showDatePicker(
       context: context,
-      initialDate: selectedDate,
-      firstDate: selectedDate,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2100),
-    ) as DateTime?;
-
-    if (newSelectedDate != null) {
-      setState(() {
-        selectedDate = newSelectedDate;
-      });
-    }
+    ).then((value) => {
+          setState(() {
+            if (value != null) selectedDate = value;
+          })
+        });
   }
 }
