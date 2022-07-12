@@ -1,6 +1,8 @@
-import 'package:comrade/screens/login/login.dart';
+import 'package:comrade/profile/edit_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+void main() => runApp(const RegisterPage());
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
@@ -30,10 +33,19 @@ class _RegisterPageState extends State<RegisterPage> {
       print(e);
     }
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginPage()),
-    );
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
   }
 
   @override
@@ -50,7 +62,13 @@ class _RegisterPageState extends State<RegisterPage> {
               controller: passController,
             ),
             ElevatedButton(
-              onPressed: signUp,
+              onPressed: () => {
+                signUp,
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EditProfile()),
+                )
+              },
               child: Text('SIGN UP'),
             ),
           ],

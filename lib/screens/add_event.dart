@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../homepage.dart';
 import '../models/event.dart';
+import '../widgets/custom_text_field.dart';
 
 class AddEvent extends StatefulWidget {
   const AddEvent({Key? key}) : super(key: key);
@@ -43,10 +44,13 @@ class _AddEventState extends State<AddEvent> {
         margin: EdgeInsets.all(10),
         child: Column(
           children: [
-            customTextfield(titleController, 'Name your event'),
-            customTextfield(
-              descriptionController,
-              'Describe the event.',
+            CustomTextField(
+              controller: titleController,
+              hint: 'Enter title',
+            ),
+            CustomTextField(
+              controller: descriptionController,
+              hint: 'Describe the event.',
               textInputType: TextInputType.multiline,
               maxLines: 3,
             ),
@@ -81,8 +85,9 @@ class _AddEventState extends State<AddEvent> {
                       items: dropdownItems),
                 ),
                 Flexible(
-                  child:
-                      customTextfield(addressController, 'Enter event address'),
+                  child: CustomTextField(
+                      controller: addressController,
+                      hint: 'Enter event address'),
                 )
               ],
             ),
@@ -124,33 +129,6 @@ class _AddEventState extends State<AddEvent> {
 
 // this is a custom Widget we have extracted in order to avoid repeating code
 // in the parameters we see an example of optional parameter with a default value
-  Widget customTextfield(TextEditingController controller, String hint,
-      {TextInputType textInputType = TextInputType.text, int maxLines = 1}) {
-    return Container(
-      margin: const EdgeInsets.all(5),
-      child: TextField(
-        controller: controller,
-        keyboardType: textInputType,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          hintText: hint,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.grey, width: 2),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.grey, width: 1.5),
-          ),
-          focusedBorder: OutlineInputBorder(
-            gapPadding: 0.0,
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.red, width: 1.5),
-          ),
-        ),
-      ),
-    );
-  }
 
   _selectTime(BuildContext context) async {
     final TimeOfDay? timeOfDay = await showTimePicker(

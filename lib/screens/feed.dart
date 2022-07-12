@@ -13,6 +13,7 @@ class Feed extends StatefulWidget {
 
 class _FeedState extends State<Feed> {
   List<Event> _eventsList = [];
+  String city = 'F';
 
   @override
   void initState() {
@@ -31,8 +32,15 @@ class _FeedState extends State<Feed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: null,
-        title: Text('Feed'),
+        automaticallyImplyLeading: false,
+        actions: [
+          Expanded(
+            child: DropdownItemState(dropdownItemsCategories, city),
+          ),
+          Expanded(
+            child: DropdownItemState(dropdownItemsCity, city),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: _eventsList.length,
@@ -128,7 +136,61 @@ class _FeedState extends State<Feed> {
     setState(() {
       _eventsList =
           List.from(data.docs.map((data) => Event.fromSnapshot(data)));
-      _eventsList.retainWhere((element) => element.city.toString() == 'DA');
+      DropdownItemState dropdownItemState =
+          DropdownItemState(dropdownItemsCity, city);
+      _eventsList.retainWhere((element) => element.city.toString() == city);
     });
+  }
+}
+
+List<DropdownMenuItem<String>> get dropdownItemsCategories {
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("All"), value: "All"),
+    DropdownMenuItem(child: Text("Soccer"), value: "Soccer"),
+    DropdownMenuItem(child: Text("Badminton"), value: "Badminton"),
+    DropdownMenuItem(child: Text("Jogging"), value: "Jogging"),
+  ];
+  return menuItems;
+}
+
+List<DropdownMenuItem<String>> get dropdownItemsCity {
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("Darmstadt"), value: "DA"),
+    DropdownMenuItem(child: Text("Frankfurt"), value: "F"),
+    DropdownMenuItem(child: Text("Mainz"), value: "MZ"),
+    DropdownMenuItem(child: Text("Wiesbaden"), value: "WI"),
+    DropdownMenuItem(child: Text("Offenbach"), value: "OF"),
+    DropdownMenuItem(child: Text("Bad Homburg"), value: "HG"),
+  ];
+  return menuItems;
+}
+
+class DropdownItemState extends StatefulWidget {
+  List<DropdownMenuItem<String>> liste;
+  String selectedValue;
+
+  DropdownItemState(this.liste, this.selectedValue);
+
+  @override
+  State<DropdownItemState> createState() => DropdownItemStateState();
+}
+
+class DropdownItemStateState extends State<DropdownItemState> {
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField(
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(style: BorderStyle.none)),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(style: BorderStyle.none)),
+        ),
+        value: widget.selectedValue,
+        onChanged: (String? newValue) {
+          setState(() {
+            widget.selectedValue = newValue!;
+          });
+        },
+        items: widget.liste);
   }
 }

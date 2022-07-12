@@ -1,6 +1,8 @@
+import 'package:comrade/profile/edit_profile.dart';
 import 'package:comrade/screens/add_event.dart';
 import 'package:comrade/screens/feed.dart';
 import 'package:comrade/profile/profile.dart';
+import 'package:comrade/screens/register/register.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +24,8 @@ class _HomePageState extends State<HomePage> {
     Feed(),
     AddEvent(),
     UserProfile(),
+    RegisterPage(),
+    EditProfile(),
   ];
 
   @override

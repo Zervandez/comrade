@@ -1,3 +1,4 @@
+import 'package:comrade/profile/edit_profile.dart';
 import 'package:comrade/screens/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -79,7 +80,9 @@ class _UserProfileState extends State<UserProfile> {
                 children: [
                   Icon(Icons.male),
                   Text('27'),
-                  Icon(Icons.settings),
+                  Icon(
+                    Icons.settings,
+                  ),
                   ElevatedButton.icon(
                     onPressed: logUserOut,
                     icon: Icon(Icons.logout),
@@ -128,6 +131,19 @@ class _UserProfileState extends State<UserProfile> {
                   },
                   child: Text('LOGOUT')),
             ),
+
+            Container(
+              child: ElevatedButton(
+                  child: Text('Settings'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EditProfile()),
+                    );
+                  }),
+            ),
+
             Container(
               alignment: Alignment.bottomCenter,
               height: 240,
