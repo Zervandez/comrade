@@ -1,6 +1,6 @@
 import 'package:comrade/screens/add_event.dart';
 import 'package:comrade/screens/feed.dart';
-import 'package:comrade/screens/profile.dart';
+import 'package:comrade/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
