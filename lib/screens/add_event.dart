@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import '../homepage.dart';
 import '../models/event.dart';
 
 class AddEvent extends StatefulWidget {
@@ -105,7 +106,11 @@ class _AddEventState extends State<AddEvent> {
                 FirebaseFirestore.instance
                     .collection('Events')
                     .add(newEvent.toJson())
-                    .then((value) => print('success!'));
+                    .then((_) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()),
+                        ));
                 // .then go to feed
                 // & optionally hightlight the last added post for 1 sec
               },

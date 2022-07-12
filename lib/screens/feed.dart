@@ -70,7 +70,7 @@ class _FeedState extends State<Feed> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text('uid'),
+                            Text(e.uid),
                           ],
                         )
                       ],
