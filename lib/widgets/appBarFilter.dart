@@ -1,60 +1,25 @@
 import 'package:flutter/material.dart';
 
-class FilterUInew extends StatefulWidget {
-  FilterUInew({Key? key}) : super(key: key);
+class FilteringAppBar extends StatefulWidget {
+  FilteringAppBar({Key? key}) : super(key: key);
 
   @override
-  State<FilterUInew> createState() => _FilterUInewState();
+  State<FilteringAppBar> createState() => _FilteringAppBarState();
 }
 
-class _FilterUInewState extends State<FilterUInew> {
+class _FilteringAppBarState extends State<FilteringAppBar> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      margin: EdgeInsets.all(8.0),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Text(
-                "Filter",
-                style: TextStyle(fontSize: 18),
-              ),
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  child: Text(
-                    "  Category",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  width: 80,
-                ),
-                Expanded(
-                  child: DropdownItemState(dropdownItemsCategories),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  child: Text(
-                    "  City",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  width: 80,
-                ),
-                Expanded(child: DropdownItemState(dropdownItemsCity)),
-              ],
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          Expanded(
+            child: DropdownItemState(dropdownItemsCategories),
+          ),
+          Expanded(
+            child: DropdownItemState(dropdownItemsCity),
+          ),
+        ],
       ),
     );
   }
