@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Event {
+  String uid;
   String title;
   String? description;
   TimeOfDay time;
@@ -10,6 +11,7 @@ class Event {
   String address;
 
   Event(
+    this.uid,
     this.title,
     this.description,
     this.time,
@@ -19,7 +21,8 @@ class Event {
   );
 
   Event.fromSnapshot(snapshot)
-      : title = snapshot.data()['title'],
+      : uid = snapshot.data()['uid'],
+        title = snapshot.data()['title'],
         description = snapshot.data()['description'],
         time = TimeOfDay.fromDateTime(
             DateFormat.jm().parse(snapshot.data()['time'])),
@@ -28,6 +31,7 @@ class Event {
         address = snapshot.data()['address'];
 
   Map<String, dynamic> toJson() => {
+        'uid': uid.toString(),
         'title': title.toString(),
         'description': description.toString(),
         'time': time.hour.toString() + ':' + time.minute.toString() + ' PM',

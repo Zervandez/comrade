@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../models/event.dart';
@@ -15,6 +14,7 @@ class AddEvent extends StatefulWidget {
 class _AddEventState extends State<AddEvent> {
   DatabaseReference eventsReference = FirebaseDatabase.instance.ref('events');
 
+  final uid = FirebaseAuth.instance.currentUser?.uid;
   TextEditingController titleController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
@@ -89,6 +89,7 @@ class _AddEventState extends State<AddEvent> {
               onPressed: () {
                 // events.push
                 Event newEvent = Event(
+                  uid.toString(),
                   titleController.text,
                   descriptionController.text,
                   selectedTime,
