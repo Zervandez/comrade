@@ -1,14 +1,22 @@
 import 'package:comrade/screens/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(UserProfile());
 // The main() class is here for debbuging purposes
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   UserProfile({Key? key}) : super(key: key);
 
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  final email = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +63,8 @@ class UserProfile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
-              child: const Text(
-                "@kk",
+              child: Text(
+                email.toString(),
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w100,

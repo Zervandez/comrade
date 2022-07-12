@@ -13,7 +13,7 @@ class AddEvent extends StatefulWidget {
 }
 
 class _AddEventState extends State<AddEvent> {
-  DatabaseReference eventsReference = FirebaseDatabase.instance.ref('events');
+  //DatabaseReference eventsReference = FirebaseDatabase.instance.ref('events');
 
   final uid = FirebaseAuth.instance.currentUser?.uid;
   TextEditingController titleController = TextEditingController();

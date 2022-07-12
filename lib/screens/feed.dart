@@ -128,7 +128,7 @@ class _FeedState extends State<Feed> {
     setState(() {
       _eventsList =
           List.from(data.docs.map((data) => Event.fromSnapshot(data)));
-      _eventsList.retainWhere((element) => element.city.toString() == 'F');
+      _eventsList.retainWhere((element) => element.city.toString() == 'DA');
     });
   }
 }

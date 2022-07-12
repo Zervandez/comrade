@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Event {
-  String uid;
+  String uid; // creator ID
   String title;
   String? description;
   TimeOfDay time;
