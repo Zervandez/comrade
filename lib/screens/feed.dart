@@ -144,6 +144,7 @@ class _FeedState extends State<Feed> {
                             e.date.day.toString() +
                             ' ' +
                             e.date.month.toString()),
+                        Text(e.category.toString()),
                         Text(e.city.toString()),
                       ],
                     )

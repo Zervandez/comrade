@@ -138,8 +138,7 @@ class _AddEventState extends State<AddEvent> {
                     .add(newEvent.toJson())
                     .then((_) => Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomePage()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         ));
                 // .then go to feed
                 // & optionally hightlight the last added post for 1 sec

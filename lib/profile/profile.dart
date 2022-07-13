@@ -17,7 +17,7 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  final email = FirebaseAuth.instance.currentUser?.email;
+  var email = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
@@ -158,10 +158,6 @@ class _UserProfileState extends State<UserProfile> {
                   singleChartColumn(),
                   singleChartColumn(),
                   singleChartColumn(),
-                  singleChartColumn(),
-                  singleChartColumn(),
-                  singleChartColumn(),
-                  singleChartColumn()
                 ],
               ),
             ),

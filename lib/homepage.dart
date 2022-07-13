@@ -1,22 +1,26 @@
-import 'package:comrade/profile/edit_profile.dart';
-import 'package:comrade/screens/add_event.dart';
-import 'package:comrade/screens/feed.dart';
-import 'package:comrade/profile/profile.dart';
-import 'package:comrade/screens/register/register.dart';
 import 'package:flutter/material.dart';
 
+import 'package:comrade/profile/edit_profile.dart';
+import 'package:comrade/profile/profile.dart';
+import 'package:comrade/screens/add_event.dart';
+import 'package:comrade/screens/feed.dart';
+import 'package:comrade/screens/register/register.dart';
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  int selectedIndex;
+  HomePage({
+    Key? key,
+    this.selectedIndex = 0,
+  }) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
   void _navigateBottomBar(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
@@ -29,9 +33,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: _pages[widget.selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
+          currentIndex: widget.selectedIndex,
           onTap: _navigateBottomBar,
           type: BottomNavigationBarType.fixed,
           items: [

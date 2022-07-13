@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:ui';
 
 import 'package:comrade/homepage.dart';
@@ -25,6 +26,23 @@ class _LoginPageState extends State<LoginPage> {
 
     emailController.addListener(() => setState(() {}));
     passwordController.addListener(() => setState(() {}));
+  }
+
+  void sendToRegister(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const RegisterPage()),
+    );
+  }
+
+  void goToProfile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => HomePage(
+                selectedIndex: 2,
+              )),
+    );
   }
 
   @override
@@ -65,11 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Colors.blueAccent),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegisterPage()),
-                        );
+                        sendToRegister(context);
                       }),
               ),
             ),
@@ -106,67 +120,70 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.all(20),
-          child: TextField(
-              obscureText: true,
-              keyboardType: TextInputType.visiblePassword,
-              textInputAction: TextInputAction.go,
-              controller: passwordController,
-              decoration: InputDecoration(
-                labelText: 'Enter your Password',
-                //hintText: "",
-                suffixIcon: passwordController.text.isEmpty
-                    ? Container(width: 0)
-                    : IconButton(
-                        onPressed: () => passwordController.clear(),
-                        icon: Icon(Icons.close),
-                      ),
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.go,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Enter your Password',
+                    //hintText: "",
+                    suffixIcon: passwordController.text.isEmpty
+                        ? Container(width: 0)
+                        : IconButton(
+                            onPressed: () => passwordController.clear(),
+                            icon: Icon(Icons.close),
+                          ),
 
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey, width: 2),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey, width: 1.5),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  gapPadding: 0.0,
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.red, width: 1.5),
-                ),
-              ),
-              onSubmitted: (_) => {
-                    loginToFirebase(
-                        emailController.text, passwordController.text),
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    )
-                  }),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey, width: 1.5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      gapPadding: 0.0,
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.red, width: 1.5),
+                    ),
+                  ),
+                  onSubmitted: (_) => {
+                        loginToFirebase(
+                            emailController.text, passwordController.text),
+                      }),
+            ),
+          ],
         ),
       ],
     ));
   }
-}
 
-Future<void> loginToFirebase(String email, String password) async {
-  try {
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      print('No user found for that email.');
-    } else if (e.code == 'wrong-password') {
-      print('Wrong password provided for that user.');
+  Future<void> loginToFirebase(String email, String password) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      if (userCredential.user != null) {
+        goToProfile();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("User doesn't exist.")));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Wrong password provided for that user.")));
+        //
+      }
     }
   }
 }
