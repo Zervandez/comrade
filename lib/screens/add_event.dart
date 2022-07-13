@@ -23,7 +23,8 @@ class _AddEventState extends State<AddEvent> {
   TextEditingController descriptionController = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
   DateTime selectedDate = DateTime.now();
-  String selectedValue = 'F';
+  String selectedCityValue = 'F';
+  String selectedCategoryValue = 'Social';
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -33,6 +34,18 @@ class _AddEventState extends State<AddEvent> {
       DropdownMenuItem(child: Text("WI"), value: "WI"),
       DropdownMenuItem(child: Text("DA"), value: "DA"),
       DropdownMenuItem(child: Text("HG"), value: "HG"),
+    ];
+    return menuItems;
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItemsCategories {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("All"), value: "All"),
+      DropdownMenuItem(child: Text("Soccer"), value: "Soccer"),
+      DropdownMenuItem(child: Text("Badminton"), value: "Badminton"),
+      DropdownMenuItem(child: Text("Jogging"), value: "Jogging"),
+      DropdownMenuItem(child: Text("Yoga"), value: "Yoga"),
+      DropdownMenuItem(child: Text("Social"), value: "Social"),
     ];
     return menuItems;
   }
@@ -76,10 +89,10 @@ class _AddEventState extends State<AddEvent> {
                 Container(
                   margin: EdgeInsets.all(5),
                   child: DropdownButton(
-                      value: selectedValue,
+                      value: selectedCityValue,
                       onChanged: (String? newValue) {
                         setState(() {
-                          selectedValue = newValue!;
+                          selectedCityValue = newValue!;
                         });
                       },
                       items: dropdownItems),
@@ -91,6 +104,17 @@ class _AddEventState extends State<AddEvent> {
                 )
               ],
             ),
+            Container(
+              margin: EdgeInsets.all(5),
+              child: DropdownButton(
+                  value: selectedCategoryValue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedCategoryValue = newValue!;
+                    });
+                  },
+                  items: dropdownItemsCategories),
+            ),
             ElevatedButton(
               onPressed: () {
                 // events.push
@@ -100,7 +124,8 @@ class _AddEventState extends State<AddEvent> {
                   descriptionController.text,
                   selectedTime,
                   selectedDate,
-                  selectedValue,
+                  selectedCityValue,
+                  selectedCategoryValue,
                   addressController.text,
                 );
 

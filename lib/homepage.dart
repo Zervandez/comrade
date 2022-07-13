@@ -24,8 +24,6 @@ class _HomePageState extends State<HomePage> {
     Feed(),
     AddEvent(),
     UserProfile(),
-    RegisterPage(),
-    EditProfile(),
   ];
 
   @override

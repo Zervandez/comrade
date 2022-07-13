@@ -8,6 +8,7 @@ class Event {
   TimeOfDay time;
   DateTime date;
   String city;
+  String category;
   String address;
 
   Event(
@@ -17,6 +18,7 @@ class Event {
     this.time,
     this.date,
     this.city,
+    this.category,
     this.address,
   );
 
@@ -28,6 +30,7 @@ class Event {
             DateFormat.jm().parse(snapshot.data()['time'])),
         date = DateTime.parse(snapshot.data()['date']),
         city = snapshot.data()['city'],
+        category = snapshot.data()['category'],
         address = snapshot.data()['address'];
 
   Map<String, dynamic> toJson() => {
@@ -37,6 +40,7 @@ class Event {
         'time': time.hour.toString() + ':' + time.minute.toString() + ' PM',
         'date': date.toIso8601String(),
         'city': city.toString(),
+        'category': category.toString(),
         'address': address.toString(),
       };
 }

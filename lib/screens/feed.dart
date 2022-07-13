@@ -13,7 +13,9 @@ class Feed extends StatefulWidget {
 
 class _FeedState extends State<Feed> {
   List<Event> _eventsList = [];
-  String city = 'F';
+
+  String selectedCityValue = 'All';
+  String selectedCategoryValue = 'All';
 
   @override
   void initState() {
@@ -35,10 +37,38 @@ class _FeedState extends State<Feed> {
         automaticallyImplyLeading: false,
         actions: [
           Expanded(
-            child: DropdownItemState(dropdownItemsCategories, city),
+            child: DropdownButtonFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(style: BorderStyle.none)),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(style: BorderStyle.none)),
+                ),
+                value: selectedCityValue,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedCityValue = newValue!;
+                    getEventsList();
+                  });
+                },
+                items: dropdownItemsCity),
           ),
           Expanded(
-            child: DropdownItemState(dropdownItemsCity, city),
+            child: DropdownButtonFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(style: BorderStyle.none)),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(style: BorderStyle.none)),
+                ),
+                value: selectedCategoryValue,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedCategoryValue = newValue!;
+                    getEventsList();
+                  });
+                },
+                items: dropdownItemsCategories),
           ),
         ],
       ),
@@ -136,9 +166,15 @@ class _FeedState extends State<Feed> {
     setState(() {
       _eventsList =
           List.from(data.docs.map((data) => Event.fromSnapshot(data)));
-      DropdownItemState dropdownItemState =
-          DropdownItemState(dropdownItemsCity, city);
-      _eventsList.retainWhere((element) => element.city.toString() == city);
+
+      if (selectedCityValue != 'All') {
+        _eventsList.retainWhere(
+            (element) => element.city.toString() == selectedCityValue);
+      }
+      if (selectedCategoryValue != 'All') {
+        _eventsList.retainWhere(
+            (element) => element.category.toString() == selectedCategoryValue);
+      }
     });
   }
 }
@@ -149,12 +185,15 @@ List<DropdownMenuItem<String>> get dropdownItemsCategories {
     DropdownMenuItem(child: Text("Soccer"), value: "Soccer"),
     DropdownMenuItem(child: Text("Badminton"), value: "Badminton"),
     DropdownMenuItem(child: Text("Jogging"), value: "Jogging"),
+    DropdownMenuItem(child: Text("Yoga"), value: "Yoga"),
+    DropdownMenuItem(child: Text("Social"), value: "Social"),
   ];
   return menuItems;
 }
 
 List<DropdownMenuItem<String>> get dropdownItemsCity {
   List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("All"), value: "All"),
     DropdownMenuItem(child: Text("Darmstadt"), value: "DA"),
     DropdownMenuItem(child: Text("Frankfurt"), value: "F"),
     DropdownMenuItem(child: Text("Mainz"), value: "MZ"),
@@ -163,34 +202,4 @@ List<DropdownMenuItem<String>> get dropdownItemsCity {
     DropdownMenuItem(child: Text("Bad Homburg"), value: "HG"),
   ];
   return menuItems;
-}
-
-class DropdownItemState extends StatefulWidget {
-  List<DropdownMenuItem<String>> liste;
-  String selectedValue;
-
-  DropdownItemState(this.liste, this.selectedValue);
-
-  @override
-  State<DropdownItemState> createState() => DropdownItemStateState();
-}
-
-class DropdownItemStateState extends State<DropdownItemState> {
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField(
-        decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(style: BorderStyle.none)),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(style: BorderStyle.none)),
-        ),
-        value: widget.selectedValue,
-        onChanged: (String? newValue) {
-          setState(() {
-            widget.selectedValue = newValue!;
-          });
-        },
-        items: widget.liste);
-  }
 }
