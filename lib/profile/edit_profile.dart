@@ -53,6 +53,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(10),
@@ -71,7 +72,7 @@ class _EditProfileState extends State<EditProfile> {
                 hint: '',
               ),
               Container(
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 child: DropdownButton(
                     value: sex,
                     onChanged: (String? newValue) {
@@ -81,23 +82,19 @@ class _EditProfileState extends State<EditProfile> {
                     },
                     items: dropdownItems),
               ),
-              Container(
-                child: ElevatedButton(
-                    onPressed: () => {
-                          updateUser(
-                              nameController, emailController, passController),
-                          goToProfile(),
-                        },
-                    child: Text('UPDATE')),
-              ),
-              Container(
-                child: ElevatedButton(
+              ElevatedButton(
                   onPressed: () => {
-                    deleteUser(),
-                    sendToLogin(context),
-                  },
-                  child: Text('DELETE'),
-                ),
+                        updateUser(
+                            nameController, emailController, passController),
+                        goToProfile(),
+                      },
+                  child: Text('UPDATE')),
+              ElevatedButton(
+                onPressed: () => {
+                  deleteUser(),
+                  sendToLogin(context),
+                },
+                child: Text('DELETE'),
               )
             ],
           ),
@@ -113,9 +110,9 @@ void updateUser(
   TextEditingController newPass,
 ) async {
   User? user = FirebaseAuth.instance.currentUser;
-  await user!.updateDisplayName(newName.text);
-  await user.updateEmail(newEmail.text);
-  await user.updatePassword(newPass.text);
+  if (newName.text.isNotEmpty) await user!.updateDisplayName(newName.text);
+  if (newEmail.text.isNotEmpty) await user!.updateEmail(newEmail.text);
+  if (newPass.text.isNotEmpty) await user!.updatePassword(newPass.text);
 }
 
 void deleteUser() {

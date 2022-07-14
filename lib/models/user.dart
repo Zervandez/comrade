@@ -4,14 +4,31 @@ class User {
   String name;
   String email;
   String birthYear;
-  bool sex;
+  String sex;
 
-  User({
-    required this.uid,
-    required this.profilePicURL,
-    required this.name,
-    required this.email,
-    required this.birthYear,
-    required this.sex,
-  });
+  User(
+    this.uid,
+    this.profilePicURL,
+    this.name,
+    this.email,
+    this.birthYear,
+    this.sex,
+  );
+
+  User.fromSnapshot(snapshot)
+      : uid = snapshot.data()['uid'],
+        profilePicURL = snapshot.data()['profilePicURL'],
+        name = snapshot.data()['name'],
+        email = snapshot.data()['email'],
+        birthYear = snapshot.data()['birthYear'],
+        sex = snapshot.data()['sex'];
+
+  Map<String, dynamic> toJson() => {
+        'uid': uid.toString(),
+        'profilePicURL': profilePicURL.toString(),
+        'name': name.toString(),
+        'email': email.toString(),
+        'birthYear': birthYear.toString(),
+        'sex': sex.toString(),
+      };
 }

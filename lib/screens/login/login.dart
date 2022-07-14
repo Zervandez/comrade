@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:ui';
-
 import 'package:comrade/homepage.dart';
 import 'package:comrade/screens/feed.dart';
 import 'package:comrade/screens/register/register.dart';
@@ -179,6 +176,7 @@ class _LoginPageState extends State<LoginPage> {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text("User doesn't exist.")));
+        sendToRegister(context);
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Wrong password provided for that user.")));

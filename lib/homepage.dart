@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:comrade/profile/edit_profile.dart';
 import 'package:comrade/profile/profile.dart';
 import 'package:comrade/screens/add_event.dart';
 import 'package:comrade/screens/feed.dart';
-import 'package:comrade/screens/register/register.dart';
 
 class HomePage extends StatefulWidget {
   int selectedIndex;
