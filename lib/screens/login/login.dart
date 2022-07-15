@@ -1,5 +1,5 @@
 import 'package:comrade/homepage.dart';
-import 'package:comrade/screens/feed.dart';
+import 'package:comrade/screens/Feed/feed.dart';
 import 'package:comrade/screens/register/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';

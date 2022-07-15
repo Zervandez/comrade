@@ -50,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
             email: emailController.text,
             password: passController.text,
           )
-          .then((credential) => {
+          .then((credential) async => {
                 user = Comrade.User(
                   credential.user!.uid,
                   'profile picture urs',
@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   birthYearController.text,
                   sex,
                 ),
-                FirebaseFirestore.instance
+                await FirebaseFirestore.instance
                     .collection("Users")
                     .doc(user.uid.toString())
                     .set(user.toJson())

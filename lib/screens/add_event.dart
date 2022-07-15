@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -16,7 +19,7 @@ class AddEvent extends StatefulWidget {
 class _AddEventState extends State<AddEvent> {
   //DatabaseReference eventsReference = FirebaseDatabase.instance.ref('events');
 
-  final uid = FirebaseAuth.instance.currentUser?.uid;
+  final uid = getRandomString(10);
   TextEditingController titleController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
@@ -179,4 +182,10 @@ class _AddEventState extends State<AddEvent> {
           })
         });
   }
+}
+
+String getRandomString(int len) {
+  var random = Random.secure();
+  var values = List<int>.generate(len, (i) => random.nextInt(255));
+  return base64UrlEncode(values);
 }
