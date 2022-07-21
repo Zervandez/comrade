@@ -102,9 +102,31 @@ class _RegisterPageState extends State<RegisterPage> {
                 controller: emailController,
                 hint: 'Enter your email.',
               ),
-              CustomTextField(
+              TextField(
+                obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.go,
                 controller: passController,
-                hint: 'Create a password.',
+                decoration: InputDecoration(
+                  labelText: 'Enter your Password',
+                  //hintText: "",
+
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Colors.grey, width: 2),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Colors.grey, width: 1.5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    gapPadding: 0.0,
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Colors.red, width: 1.5),
+                  ),
+                ),
               ),
               Container(
                 margin: const EdgeInsets.all(5),

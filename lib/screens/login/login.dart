@@ -51,11 +51,11 @@ class _LoginPageState extends State<LoginPage> {
         Container(
           margin: EdgeInsets.only(top: 50),
           // margin: const EdgeInsets.all(10),
-          height: 100.0,
-          width: 100.0,
+          height: 200.0,
+          width: 200.0,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/comrade_logo.jpeg'),
+              image: AssetImage('assets/draussen_logo.png'),
               fit: BoxFit.cover,
             ),
             //shape: BoxShape.circle,

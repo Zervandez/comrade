@@ -100,5 +100,5 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - assets/sabba_profile_pic.jpg
-    - assets/comrade_logo.jpeg
+    - assets/profile.png
+    - assets/draussen_logo.png

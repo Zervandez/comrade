@@ -115,7 +115,7 @@ class _FeedState extends State<Feed> {
                         width: 40,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/sabba_profile_pic.jpg'),
+                            image: AssetImage('assets/profile.png'),
                             fit: BoxFit.cover,
                           ),
                           shape: BoxShape.circle,

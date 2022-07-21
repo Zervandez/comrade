@@ -55,7 +55,7 @@ class _UserProfileState extends State<UserProfile> {
               width: 140.0,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/sabba_profile_pic.jpg'),
+                  image: AssetImage('assets/profile.png'),
                   fit: BoxFit.cover,
                 ),
                 shape: BoxShape.circle,
